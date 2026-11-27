@@ -1,0 +1,308 @@
+{
+ "_comentario": "Clara montada com as partes desenhadas (tela 1080x1080), vista de frente. Cada pose diz quanto cada peça gira em torno do pivot (graus, positivo = anti-horário) e quanto se desloca (dx, dy). Cada sapato fica preso no tornozelo da sua perna. Gerado por tools/build_clara_rig.py.",
+ "tela": 1080,
+ "olhandoPara": "esquerda",
+ "alturaNoJogo": 250,
+ "centroX": 540,
+ "pecas": [
+  {
+   "id": "cabelo_tras",
+   "arquivo": "clara_partes/cabelo_tras.png",
+   "pivot": [
+    530,
+    232
+   ],
+   "segue": "cabeca"
+  },
+  {
+   "id": "pe_esq",
+   "arquivo": "clara_partes/sapato_esq.png",
+   "pe": "apoiado",
+   "perna": "perna_esq",
+   "pivot": [
+    505,
+    960
+   ]
+  },
+  {
+   "id": "pe_dir",
+   "arquivo": "clara_partes/sapato_dir.png",
+   "pe": "apoiado",
+   "perna": "perna_dir",
+   "pivot": [
+    605,
+    960
+   ]
+  },
+  {
+   "id": "perna_esq",
+   "arquivo": "clara_partes/perna_esq.png",
+   "pivot": [
+    505,
+    600
+   ],
+   "tornozelo": [
+    505,
+    960
+   ]
+  },
+  {
+   "id": "perna_dir",
+   "arquivo": "clara_partes/perna_dir.png",
+   "pivot": [
+    590,
+    600
+   ],
+   "tornozelo": [
+    605,
+    960
+   ]
+  },
+  {
+   "id": "tronco",
+   "arquivo": "clara_partes/tronco.png",
+   "pivot": [
+    540,
+    600
+   ]
+  },
+  {
+   "id": "braco_esq",
+   "arquivo": "clara_partes/braco_esq.png",
+   "pivot": [
+    452,
+    290
+   ]
+  },
+  {
+   "id": "braco_dir",
+   "arquivo": "clara_partes/braco_dir.png",
+   "pivot": [
+    624,
+    290
+   ]
+  },
+  {
+   "id": "cabeca",
+   "arquivo": "clara_partes/cabeca.png",
+   "pivot": [
+    530,
+    232
+   ]
+  },
+  {
+   "id": "olhos",
+   "arquivo": "clara_partes/olhos.png",
+   "pivot": [
+    530,
+    232
+   ],
+   "segue": "cabeca"
+  },
+  {
+   "id": "olhos_fechados",
+   "arquivo": "clara_partes/olhos_fechados.png",
+   "pivot": [
+    530,
+    232
+   ],
+   "segue": "cabeca",
+   "oculto": true
+  },
+  {
+   "id": "cabelo",
+   "arquivo": "clara_partes/cabelo.png",
+   "pivot": [
+    530,
+    232
+   ],
+   "segue": "cabeca"
+  }
+ ],
+ "poses": {
+  "parado": {
+   "tronco": {
+    "rot": 0,
+    "dx": 0,
+    "dy": 0
+   },
+   "cabeca": {
+    "rot": 0,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_esq": {
+    "rot": 0,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_dir": {
+    "rot": 0,
+    "dx": 0,
+    "dy": 0
+   },
+   "perna_esq": {
+    "rot": 0,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   },
+   "perna_dir": {
+    "rot": 0,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   }
+  },
+  "passo1": {
+   "tronco": {
+    "rot": -2,
+    "dx": 0,
+    "dy": 0
+   },
+   "cabeca": {
+    "rot": -1,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_esq": {
+    "rot": 10,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_dir": {
+    "rot": -10,
+    "dx": 0,
+    "dy": 0
+   },
+   "perna_esq": {
+    "rot": -16,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   },
+   "perna_dir": {
+    "rot": 12,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   }
+  },
+  "passagem1": {
+   "tronco": {
+    "rot": -1,
+    "dx": 0,
+    "dy": -6
+   },
+   "cabeca": {
+    "rot": 0,
+    "dx": 0,
+    "dy": -6
+   },
+   "braco_esq": {
+    "rot": 2,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_dir": {
+    "rot": -2,
+    "dx": 0,
+    "dy": 0
+   },
+   "perna_esq": {
+    "rot": 2,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   },
+   "perna_dir": {
+    "rot": -4,
+    "dx": 0,
+    "dy": -34,
+    "pe": "apoiado"
+   }
+  },
+  "passo2": {
+   "tronco": {
+    "rot": -2,
+    "dx": 0,
+    "dy": 0
+   },
+   "cabeca": {
+    "rot": -1,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_esq": {
+    "rot": -8,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_dir": {
+    "rot": 10,
+    "dx": 0,
+    "dy": 0
+   },
+   "perna_esq": {
+    "rot": 9,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   },
+   "perna_dir": {
+    "rot": -12,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   }
+  },
+  "passagem2": {
+   "tronco": {
+    "rot": -1,
+    "dx": 0,
+    "dy": -6
+   },
+   "cabeca": {
+    "rot": 0,
+    "dx": 0,
+    "dy": -6
+   },
+   "braco_esq": {
+    "rot": -2,
+    "dx": 0,
+    "dy": 0
+   },
+   "braco_dir": {
+    "rot": 2,
+    "dx": 0,
+    "dy": 0
+   },
+   "perna_esq": {
+    "rot": -4,
+    "dx": 0,
+    "dy": -34,
+    "pe": "apoiado"
+   },
+   "perna_dir": {
+    "rot": 2,
+    "dx": 0,
+    "dy": 0,
+    "pe": "apoiado"
+   }
+  }
+ },
+ "animacao": {
+  "ciclo": [
+   "passo1",
+   "passagem1",
+   "passo2",
+   "passagem2"
+  ],
+  "ciclosPorSegundo": 0.9,
+  "balanco": 4,
+  "respiracao": {
+   "amplitude": 2,
+   "velocidade": 0.35
+  }
+ }
+}
