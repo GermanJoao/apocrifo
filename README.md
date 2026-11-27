@@ -74,6 +74,18 @@ apocrifo/
 └── tools/                  geradores Python dos SVGs (opcionais)
 ```
 
+## Estrutura da demo
+
+- **Fase 1 (noite):** o Arthur acorda amarrado no porão. Minigame das cordas (A/D no ritmo),
+  inventário de 3 espaços, quebra-cabeça da chave do porão (jornal + arame), casa escura com
+  **medidor de barulho** (Shift anda em silêncio), molho de chaves e a porta da frente que não abre.
+  Quem pega o Arthur depende do cômodo (`vigia` em `rooms.js`); ser pego muda a história.
+- **Fase 2 (dia):** quarto de hóspedes, casa "liberada", conversas, documentos e o caderno.
+  As falas reagem a quem o pegou (`pego_por`).
+- Interações por fase: `fase: 1`, `fases: [1, 2]` ou, sem nada, só na Fase 2 (portas valem nas duas).
+  A versão noturna de um cômodo fica em `noite` (luz, som, NPCs).
+- Paranoia: `PARANOIA()` em `story.js`, agendada pela `RoomScene`.
+
 ## Como as coisas funcionam
 
 **Profundidade.** O chão é uma faixa (`WALK` em `rooms.js`, y de 512 a 690).
@@ -139,14 +151,17 @@ O código anima caminhada, respiração e piscada; não é preciso desenhar quad
 1. Desenhe o personagem em camadas, todas na mesma tela (ex.: 1080×1080).
 2. Exporte cada camada como PNG com fundo transparente, **na tela inteira** (sem recortar),
    com o mesmo nome do arquivo antigo. O jogo recorta o espaço vazio sozinho.
-3. As poses ficam em `rig.json` → `poses` (`parado`, `passo1`, `passo2`). Para cada peça:
-   quanto ela gira em torno do seu `pivot` (`rot`, graus, positivo = anti-horário) e quanto
-   se desloca (`dx`, `dy`), em relação a como foi exportada. O ciclo de caminhada percorre
-   `animacao.ciclo` e interpola entre as poses.
-   As poses atuais foram **medidas** encaixando cada peça nos desenhos `Idle`, `Andar1` e
-   `Andar2` (`antiga/esboços/FramesArthur`). Dica: as partes atuais vieram de poses
-   misturadas (o sapato de trás é do Idle, o resto do Andar2). Exportar todas as camadas da
-   mesma pose, de preferência em pé e parado, deixa o encaixe mais fácil.
+3. As poses ficam em `rig.json` → `poses` (`parado`, `passo1`, `passagem1`, `passo2`,
+   `passagem2`) e são geradas por `tools/build_arthur_rig.py` (edite as medidas lá e rode
+   `python3 tools/build_arthur_rig.py`). Para cada peça: quanto gira em torno do `pivot`
+   (`rot`, graus, positivo = anti-horário) e quanto se desloca (`dx`, `dy`).
+   - **Pés:** os dois desenhos de sapato são dois *estados* do pé — `sapato_frente.png` =
+     pé apoiado (de perfil), `sapato_tras.png` = pé na ponta (levantado). Cada perna tem
+     os dois, presos no `tornozelo`; a pose escolhe qual aparece (`"pe": "apoiado"|"ponta"`).
+   - **Braços:** `braco_tras.png` (lado esquerdo do desenho) fica atrás do tronco;
+     `braco_frente.png` (lado direito) fica na frente.
+   - `passo1` = desenho Andar1 (perna de trás à frente), `passo2` = Andar2 (perna da frente
+     à frente), `parado` = Idle. As passagens ficam no meio do caminho.
 4. `olhandoPara` diz para que lado o desenho olha; o jogo espelha quando precisa.
 
 O retrato do diálogo é `assets/characters/arthur/arthur_busto.png`. Para ter um retrato
@@ -157,18 +172,19 @@ e a pasta `partes/` (por enquanto Clara, Mãe e Pai ainda usam os SVGs antigos).
 
 ## Arte
 
-Todos os SVGs são arquivos independentes, com `viewBox` e grupos, e podem ser editados
-no Inkscape, Illustrator ou à mão. Para trocar uma arte, substitua o arquivo mantendo o nome.
+Todas as imagens do jogo são **PNG** (texturas e gravuras em JPG). Para trocar qualquer
+uma, salve um PNG com o mesmo nome na mesma pasta. A lista completa, com tamanhos, está em
+`assets/LISTA_DE_IMAGENS.md`.
 
-- Personagens: `viewBox="0 -24 240 424"`, virados para a direita, pés em `y = 392`.
-  O jogo espelha horizontalmente para a esquerda.
-- Móveis: a base do móvel fica na borda inferior do `viewBox`.
-- Se mudar o tamanho de um móvel, atualize o tamanho em `js/assets.js`.
+- Personagens provisórios (Clara, Mãe, Pai): pés na linha y≈392 de uma imagem 240×424,
+  virados para a direita (o jogo espelha). Os definitivos vão usar o sistema de partes.
+- Móveis: a base do móvel fica na borda inferior da imagem.
+- Se mudar o tamanho de um móvel, o jogo usa o tamanho novo; se mudar muito, ajuste a
+  posição/colisão em `js/data/rooms.js`.
 
-A pasta `tools/` tem os scripts Python que geraram a arte inicial
-(`gen_characters.py`, `gen_rooms.py`, `gen_props.py`, `gen_docs.py`). Eles são opcionais.
-**Atenção:** rodá-los de novo sobrescreve os SVGs; se você editou um SVG à mão,
-não rode o gerador correspondente.
+Os SVGs originais da arte provisória ficaram em `tools/svg_originais/` (não são usados pelo
+jogo). Os scripts em `tools/` geram SVGs nessa pasta; para usá-los no jogo seria preciso
+exportar para PNG de novo.
 
 ## O que está na demo
 
